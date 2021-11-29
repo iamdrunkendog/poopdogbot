@@ -95,6 +95,7 @@ client.on("messageCreate", async (message) => {
   console.log(`Message from ${message.author.username}: ${message.content}`);
   if (message.content === prefix) {
     message.reply("왜");
+    return;
   }
   if (message.content.startsWith(prefix)) {
     const commandBody = message.content.slice(prefix.length + 1);
