@@ -95,7 +95,10 @@ client.on("messageCreate", async (message) => {
       .createMessageComponentCollector()
       .on("collect", async (i) => {
         try {
-          const username = i.member.nickname;
+          let username = i.user.username;
+          if (i.member.nickname) {
+            username = i.member.nickname;
+          }
           const getPartyMembers = (text) => {
             let lines = text.split("\n");
             let members = [];
@@ -224,7 +227,7 @@ client.on("messageCreate", async (message) => {
             await i.deferUpdate();
             await wait(1000);
             await i.message.startThread({
-              name: `${i.member.nickname}-님의-구인-공고`,
+              name: `${username}-님의-구인-공고`,
               autoArchiveDuration: 60,
             });
             await i.editReply({
@@ -245,7 +248,10 @@ client.on("messageCreate", async (message) => {
     //   }
     // });
 
-    const username = message.member.nickname;
+    let username = message.author.username;
+    if (message.member.nickname) {
+      username = messge.member.nickname;
+    }
     const partyEmbed = new MessageEmbed()
       .setColor("#0099ff")
       .setTitle("구인 공고")
