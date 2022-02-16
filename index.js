@@ -250,7 +250,7 @@ client.on("messageCreate", async (message) => {
 
     let username = message.author.username;
     if (message.member.nickname) {
-      username = messge.member.nickname;
+      username = message.member.nickname;
     }
     const partyEmbed = new MessageEmbed()
       .setColor("#0099ff")
@@ -319,6 +319,7 @@ client.on("messageCreate", async (message) => {
     } else if (command === "돌아와") {
       message.reply("하이");
       alive = true;
+      return;
     } else {
       message.reply("뭐래");
       return;
