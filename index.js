@@ -50,7 +50,7 @@ const getCharInfo = async (charName, message) => {
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return false;
   console.log(`Message from ${message.author.username}: ${message.content}`);
-  if (message.channel.name === "인력사무소" && alive) {
+  if (message.channel.name === "인력사무소테스트" && alive) {
     const buttonRowLostArk = new MessageActionRow()
       .addComponents(
         new MessageButton()
@@ -223,8 +223,10 @@ client.on("messageCreate", async (message) => {
           if (i.customId === "CREATE_PARTY") {
             await i.deferUpdate();
             await wait(1000);
-
-            console.log(i);
+            await i.message.startThread({
+              name: `${i.member.nickname}-님의-구인-공고`,
+              autoArchiveDuration: 60,
+            });
             await i.editReply({
               content: "딜러(0명) : \n서폿(0명) : \n무관(0명) : ",
               components: [buttonRowLostArk],
@@ -243,7 +245,6 @@ client.on("messageCreate", async (message) => {
     //   }
     // });
 
-    const content = `${message.author.username}\n---\n${message.content}`;
     const username = message.member.nickname;
     const partyEmbed = new MessageEmbed()
       .setColor("#0099ff")
