@@ -50,7 +50,7 @@ const getCharInfo = async (charName, message) => {
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return false;
   console.log(`Message from ${message.author.username}: ${message.content}`);
-  if (message.channel.name === "인력사무소테스트" && alive) {
+  if (message.channel.name === "인력사무소" && alive) {
     const buttonRowLostArk = new MessageActionRow()
       .addComponents(
         new MessageButton()
